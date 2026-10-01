@@ -1,0 +1,25 @@
+name: "Jules Memory Compression Engine"
+
+on:
+  schedule:
+    # Запуск каждое воскресенье в 23:00 UTC
+    - cron: '0 23 * * 0'
+  workflow_dispatch:
+
+jobs:
+  compress-memory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Jules Cloud Agent
+        uses: google-labs-code/jules-action@v1
+        with:
+          jules_api_key: ${{ secrets.JULES_API_KEY }}
+          starting_branch: 'main'
+          prompt: |
+            Ты — системный архивариус моего Второго Мозга.
+            1. Проанализируй заметки в папке '01_Daily/' за прошедшие 7 дней.
+            2. Подсчитай точный процент выполненных чекбоксов (- [x]) к общему числу (- [ ]).
+            3. Выяви часы просадки фокуса и сдвиги молитв/пар.
+            4. Сформируй ультра-сжатый отчет (до 300 слов) и ПЕРЕЗАПИШИ файл '00_System/Context_Summary.md'.
+            5. Зафиксируй метрики: закрытые часы Deep Work, статус привычек, фокус на новую неделю.
+            Сделай коммит напрямую в main: 'chore(memory): autonomous weekly compression'.
