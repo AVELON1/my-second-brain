@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WEDNESDAY.md",
+                "file": "Фичи — копия.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WEDNESDAY"
+              "title": "Фичи — копия"
             }
           }
         ],
@@ -146,14 +146,14 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "TUESDAY.md",
+            "file": "Фичи — копия.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
             "showSearch": false,
             "searchQuery": "",
-            "backlinkCollapsed": false,
-            "unlinkedCollapsed": true
+            "backlinkCollapsed": true,
+            "unlinkedCollapsed": false
           },
           "icon": "links-coming-in",
           "title": "Backlinks"
@@ -185,9 +185,29 @@
           "icon": "lucide-list",
           "title": "Outline"
         }
+      },
+      {
+        "id": "aa5c67ecd7a3708a",
+        "type": "leaf",
+        "state": {
+          "type": "planner-timeline",
+          "state": {},
+          "icon": "calendar-with-checkmark",
+          "title": "Timeline"
+        }
+      },
+      {
+        "id": "0db4f3671a60a811",
+        "type": "leaf",
+        "state": {
+          "type": "planner-time-tracker",
+          "state": {},
+          "icon": "timer",
+          "title": "Time Tracker"
+        }
       }
     ],
-    "currentTab": 0
+    "currentTab": 3
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -197,17 +217,47 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false
     }
   },
   "active": "f1bc2da9336b50de",
   "lastOpenFiles": [
-    "TUESDAY.md",
+    "00_System/Prayer_Times_2026.md",
+    "01_Daily/2026-10-01.md",
+    "copilot/skills/copilot-read-pdf/read-pdf.sh",
+    "copilot/skills/obsidian-markdown/references/PROPERTIES.md",
+    "copilot/skills/copilot-fetch-x/SKILL.md",
+    "copilot/skills/obsidian-markdown/references/EMBEDS.md",
+    "copilot/skills/openartifacts-publish/SKILL.md",
+    "copilot/skills/obsidian-bases/references/EXAMPLES.md",
+    "copilot/skills/copilot-youtube-transcript/SKILL.md",
+    "copilot/skills/obsidian-markdown/references/CALLOUTS.md",
+    "copilot/skills/openartifacts-publish/openartifacts-publish.sh",
+    "copilot/skills/copilot-youtube-transcript/youtube-transcript.sh",
+    "copilot/skills/copilot-fetch-x/fetch-x.sh",
+    "copilot/skills/json-canvas/SKILL.md",
+    "copilot/skills/copilot-read-pdf/read-pdf.cmd",
+    "copilot/skills/copilot-web-fetch/web-fetch.ps1",
+    "copilot/skills/copilot-web-search/web-search.ps1",
+    "copilot/skills/openartifacts-publish/openartifacts-publish.ps1",
+    "copilot/skills/json-canvas/references/EXAMPLES.md",
+    "copilot/skills/obsidian-bases/references/FUNCTIONS_REFERENCE.md",
+    "copilot/skills/copilot-web-search/web-search.sh",
+    "copilot/skills/obsidian-markdown/LICENSE",
+    "copilot/skills/obsidian-cli/SKILL.md",
+    "copilot/skills/copilot-web-search/SKILL.md",
+    "copilot/skills/obsidian-markdown/SKILL.md",
+    "copilot/skills/copilot-read-pdf/SKILL.md",
+    "copilot/skills/openartifacts-publish/themes/research-memo.md",
+    "copilot/skills/copilot-web-fetch/SKILL.md",
+    "copilot/skills/obsidian-bases/SKILL.md",
     "WEDNESDAY.md",
+    "TUESDAY.md",
     "ы.canvas",
     "copilot/copilot-conversations/agent__можно_ли_как_то_сделать_тот_очень_длинны@20260929_114352.md",
     "Мy/Goaly/Untitled mindmap.md",
-    "Мy/Goaly",
     "Мy/source.md",
     "MONDAY.md",
     "IMG_5204.png",
@@ -216,9 +266,6 @@
     "Мy/Goauly.canvas",
     "Мy/Goauly 1.canvas",
     "время намаза.md",
-    "copilot/copilot-conversations/agent__привет@20260927_234319.md",
-    "copilot/copilot-conversations",
-    "Мy/Goauly 2.canvas",
-    "copilot/skills/json-canvas/references/EXAMPLES.md"
+    "Мy/Goauly 2.canvas"
   ]
 }
