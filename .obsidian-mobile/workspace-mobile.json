@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "8ea8f79b637dc9ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "924d7c15b599adfa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3c83924c8be7dc5f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MONDAY.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "MONDAY"
+            }
+          },
+          {
+            "id": "28bf411e0d8c9c86",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TUESDAY.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "TUESDAY"
+            }
+          },
+          {
+            "id": "f1bc2da9336b50de",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "WEDNESDAY.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WEDNESDAY"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9a0bae2b9abdbdc1",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "e33d551ac04066c2",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Files"
+        }
+      },
+      {
+        "id": "ad77d1b613878702",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "7899a39a0a2afddd",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "5ed5b68e588b450a",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "All properties"
+        }
+      },
+      {
+        "id": "b0da5ecd42492503",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "361a255b0ab64147",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "afed1786ebbef165",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "TUESDAY.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "3e64cd4f0f40b2e8",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "8de6f5fedec5ed8e",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "f1bc2da9336b50de",
+  "lastOpenFiles": [
+    "TUESDAY.md",
+    "WEDNESDAY.md",
+    "ы.canvas",
+    "copilot/copilot-conversations/agent__можно_ли_как_то_сделать_тот_очень_длинны@20260929_114352.md",
+    "Мy/Goaly/Untitled mindmap.md",
+    "Мy/Goaly",
+    "Мy/source.md",
+    "MONDAY.md",
+    "IMG_5204.png",
+    "IMG_5203.png",
+    "NotebookLM Mind Map.png",
+    "Мy/Goauly.canvas",
+    "Мy/Goauly 1.canvas",
+    "время намаза.md",
+    "copilot/copilot-conversations/agent__привет@20260927_234319.md",
+    "copilot/copilot-conversations",
+    "Мy/Goauly 2.canvas",
+    "copilot/skills/json-canvas/references/EXAMPLES.md"
+  ]
+}

@@ -1,0 +1,2 @@
+- [ ] ICT 2h: practice mindmap, goals.
+- [ ] 1h goals
