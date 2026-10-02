@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "FRIDAY.md",
+                "file": "01_Daily/2026-10-03.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "FRIDAY"
+              "title": "2026-10-03"
             }
           }
         ],
@@ -224,10 +224,10 @@
   },
   "active": "f1bc2da9336b50de",
   "lastOpenFiles": [
+    "FRIDAY.md",
     "Мy/Goaly/Untitled mindmap.md",
     "Мy/🎯 GOALS 5-YEAR HORIZON ARCHITECTURE.md",
     "Мy/30-Day Plan & Goals.md",
-    "FRIDAY.md",
     "Фичи — копия.md",
     "00_System/Prayer_Times_2026.md",
     "01_Daily/2026-10-01.md",
