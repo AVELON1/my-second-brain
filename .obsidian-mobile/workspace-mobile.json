@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01_Daily/2026-10-03.md",
+                "file": "00_System/Prayer_Times_2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-03"
+              "title": "Prayer_Times_2026"
             }
           }
         ],
@@ -224,6 +224,12 @@
   },
   "active": "f1bc2da9336b50de",
   "lastOpenFiles": [
+    "00_System/Daily_Template.md",
+    "00_System/University.md.md",
+    "00_System/Context_Summary.md.md",
+    "00_System/Strategy_Advisor.md.md",
+    "00_System/Spark_Planner.md.md",
+    "01_Daily/2026-10-03.md",
     "FRIDAY.md",
     "Мy/Goaly/Untitled mindmap.md",
     "Мy/🎯 GOALS 5-YEAR HORIZON ARCHITECTURE.md",
@@ -254,12 +260,6 @@
     "copilot/skills/obsidian-cli/SKILL.md",
     "copilot/skills/copilot-web-search/SKILL.md",
     "copilot/skills/obsidian-markdown/SKILL.md",
-    "copilot/skills/copilot-read-pdf/SKILL.md",
-    "copilot/skills/openartifacts-publish/themes/research-memo.md",
-    "copilot/skills/copilot-web-fetch/SKILL.md",
-    "copilot/skills/obsidian-bases/SKILL.md",
-    "WEDNESDAY.md",
-    "TUESDAY.md",
     "ы.canvas",
     "IMG_5204.png",
     "IMG_5203.png",
