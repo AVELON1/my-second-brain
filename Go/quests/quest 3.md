@@ -145,6 +145,7 @@ fmt.Println(a)
 
 Как только мы добрались до самого числа, пишем `= 1`. Теперь значение по цепочке перезаписано, и когда в конце запускается `fmt.Println(a)`, на экран выводится `1`.
 
+Divmoooode
 
 ```GO
 func DivMod(a int, b int, div *int, mod *int) { 
@@ -170,6 +171,7 @@ $ go run .
 $
 ```
 
+Что просит сделать задача [ultimatedivmod](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/ultimatedivmod?event=1081) простыми словами
 мы ставим а и б внутрь потому что сситема piscine.DivMod не знает откуда брать их значения и поэтому мы их пишем внутри чтобы он мог виеть их значения из мэйн
 
 ```GO
@@ -197,4 +199,4 @@ $ go run .
 $
 ```
 
-Что просит сделать задача [ultimatedivmod](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/ultimatedivmod?event=1081) простыми словами
+
