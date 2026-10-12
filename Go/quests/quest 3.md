@@ -200,3 +200,9 @@ $
 ```
 
 
+- Write a function that prints one by one the characters of a `string` on the screen.[printstr
+
+](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/printstr?event=1081)
+
+
+
