@@ -204,5 +204,60 @@ $
 
 ](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/printstr?event=1081)
 
+```go
+package main
+
+import (
+"piscine-test/piscine"
+)
+
+func main() {
+piscine.PrintStr("Hello World!\n")
+}
+```
+
+```go
+package piscine
+
+import "github.com/01-edu/z01"
+
+func PrintStr(s string) {
+	for _, letter := range s {
+z01.PrintRune(letter)
+	}
+}
+```
+
+задача у нас написать хелло уорлд так чтобы тот с каждым символом печатал а не просто сразу или по словам. что мы делаем? 
+мы ставим цикл который берет каждую букву с индексом и печатает его из мэйн
 
 
+_ это индекс но если бы мы писали просто индекс то в терминале написалось бы что индекс назван но не использован а тот _ прячется и помогает рэндж взять индексы
+
+про задания
+**`--allow-builtin`** или пусто (нет упоминания `z01`) нн нужэно писат принт рун
+а в github.com/01-edu/z01.PrintRune нужно писать и имопритровать его
+
+
+
+[strlen](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/strlen?event=1081)
+- Write a function that counts the `runes` of a `string` and that returns that count.
+```go
+func PrintStr(s string) {
+	for _, letter := range s {
+	z01.PrintRune(letter)
+	}
+}
+```
+
+```go
+/*
+func StrLen(s string) int { */
+	count := 0        
+	for range s {
+	count++
+	}
+	return count        
+//} 
+```
+ 
