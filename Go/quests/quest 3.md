@@ -260,4 +260,227 @@ func StrLen(s string) int { */
 	return count        
 //} 
 ```
- 
+
+тут не нужно писать принт по заданию так что мы пишем ретурн сперва он должен быть 0 и тот из цикла юерет из s все слова и возрстается и его и вернет
+
+
+[swap](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/swap?event=1081)
+- Write a function that takes two **pointers to an `int`** (`*int`) and swaps their contents.
+
+```go
+func Swap(a *int, b *int) {
+	*a, *b = *b, *a
+}
+```
+
+```go
+func main() {
+	a := 0
+	b := 1
+	piscine.Swap(&a, &b)
+	fmt.Println(a)
+	fmt.Println(b)
+}
+```
+я в начале писал в ответе просто *а=1 *б=0 но это равен всего лишь этомсу случаю так что нужно было писать на все случаи
+
+
+[strrev](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/strrev?event=1081)
+- Write a function that reverses a `string`.
+- This function will **return** the reversed `string`.
+
+```go
+func StrRev(s string) string {
+	runes := []rune(s)
+	i := 0
+	j := len(runes) - 1
+
+	for i < j {
+	runes[i], runes[j] = runes[j], runes[i]
+	i++
+	j--
+	}
+	
+	return string(runes)
+}
+
+func main() {
+	s := "Hello World!"
+	s = piscine.StrRev(s)
+	fmt.Println(s)
+}
+```
+
+
+что тут просиходит StrRev(s string) string означает что s должен быть стрингом а вообще результат тоже стрингом
+runes := []rune(s)      здесь []rune означает что тот берет из s все символы с массивом
+а i и j это их индексы j это послдение индексы len(runes) это общее число индекса рун и так берет по - 1 послдений индекс
+for i < j означает всегда когда j больше i тоесть нулегого индекса просиходит это:
+они меняются местами и ай увеличивается тоесть 1 2 3 4 5 а джей наоборот 5 4 3 2 1
+
+> [!NOTE]+ ### Физическая модель (метод «Двух пальцев»)
+>
+> Представь слово `"cat"`. Мы превратили его в срез рун `runes := []rune("cat")`:
+> 
+> - На полке стоят 3 буквы: `['c', 'a', 't']`.
+>     
+> - Их номера (индексы):
+>     
+>     - Индекс `0` — буква `'c'`
+>         
+>     - Индекс `1` — буква `'a'`
+>         
+>     - Индекс `2` — буква `'t'`
+>         
+> 
+> Теперь ты ставишь два пальца:
+> 
+> - **Левый палец `i`** указывает на самое начало: `i = 0` (буква `'c'`).
+>     
+> - **Правый палец `j`** указывает на самый конец: `j = 2` (буква `'t'`).
+>     
+> 
+> ### Что происходит внутри цикла шаг за шагом
+> 
+> Цикл работает по правилу: `for i < j` — _«пока левый палец находится левее правого»_.
+> 
+> #### Круг 1:
+> 
+> 1. **Проверка условия:** `i` равно $0$, а `j` равно $2$. $0 < 2$? **Да**, заходим в цикл.
+>     
+> 2. **Строка с обменом:**
+>     
+>     Go
+>     
+>     ```
+>     runes[i], runes[j] = runes[j], runes[i]
+>     ```
+>     
+>     Мы берем букву под левым пальцем (`'c'`) и меняем местами с буквой под правым пальцем (`'t'`).
+>     
+>     - Буквы на полке теперь: `['t', 'a', 'c']`.
+>         
+> 1. **Движение пальцев:**
+>     
+>     - `i++` — левый палец делает шаг вправо (стал $i = 1$).
+>         
+>     - `j--` — правый палец делает шаг влево (стал $j = 1$).
+>         
+> 
+> #### Круг 2:
+> 
+> 2. **Проверка условия:** `i` равно $1$, `j` равно $1$.
+>     
+> 3. Проверяем условие `i < j`: $1 < 1$? **НЕТ!** (Они встретились на одной и той же средней букве `'a'`).
+>     
+> 4. **Цикл останавливается.** Менять среднюю букву саму с собой нет смысла — она и так остаётся на своём месте.
+>     
+> 
+> Итог на полке: `['t', 'a', 'c']` — слово полностью перевёрнуто!
+> 
+> ### А если в слове чётное количество букв (например, 4 буквы `"code"`)?
+> 
+> Срез: `['c', 'o', 'd', 'e']` (индексы от $0$ до $3$).
+> 
+> 5. **Старт:** `i = 0` (буква `'c'`), `j = 3` (буква `'e'`).
+>     
+> 6. **Шаг 1:**
+>     
+>     - $0 < 3$ — верно.
+>         
+>     - Меняем местами крайние: `'c'` и `'e'`. Массив стал: `['e', 'o', 'd', 'c']`.
+>         
+>     - Пальцы шагают навстречу: `i` стал $1$, `j` стал $2$.
+>         
+> 7. **Шаг 2:**
+>     
+>     - $1 < 2$ — верно.
+>         
+>     - Меняем внутренние буквы под индексами $1$ и $2$ (`'o'` и `'d'`). Массив стал: `['e', 'd', 'o', 'c']`.
+>         
+>     - Пальцы шагают навстречу: `i` стал $2$, `j` стал $1$.
+>         
+> 8. **Шаг 3:**
+>     
+>     - Проверка: $2 < 1$? **НЕТ!** Левый палец обогнал правый.
+>         
+>     - Цикл моментально завершается.
+>         
+> 
+> ### Суть всех 4 строчек в одном предложении
+> 
+> - `for i < j` — идти навстречу друг другу, пока пальцы не встретятся посередине.
+>     
+> - `runes[i], runes[j] = runes[j], runes[i]` — поменять местами две противоположные буквы.
+>     
+> - `i++` — сдвинуть левый край на 1 букву ближе к центру.
+>     
+> - `j--` — сдвинуть правый край на 1 букву ближе к центру.
+
+> [!NOTE]+ почему j := len(runes) - 1 это послденее число? 
+> len(runes) это сколько символов в s ответит что 12 но что является 12надцатым world D является, а под каким индексмо этот д? под 11надцатом так как они в начале начались с 0 и идут до 11 но символов всего 12 включая тот с индексом 0
+
+
+[basicatoi](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/basicatoi?event=1081)
+--allow-builtin
+- Write a function that simulates the behaviour of the `Atoi` function in Go. `Atoi` transforms a number defined as a `string` into a number defined as an `int`.
+    
+- `Atoi` returns `0` if the `string` is not considered as a valid number. For this exercise **only valid** `string` will be tested. They will only contain one or several digits as characters.
+    
+- For this exercise the handling of the signs `+` or `-` does not have to be taken into account.
+    
+- This function will **only** have to return the `int`. For this exercise the `error` return of `Atoi` is not required.
+
+**Atoi** расшифровывается как **«ASCII to Integer»** (перевод текста в целое число).
+В задании [basicatoi](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/basicatoi?event=1081) тебе нужно вручную воспроизвести то, что делает стандартная библиотека [strconv.Atoi](https://golang.org/pkg/strconv/#Atoi): взять строку цифр вроде `"12345"` и превратить её в настоящее математическое число `12345` типа `int`.
+### В чём фундаментальная разница между строкой и числом?
+
+Для человека `"5"` и `5` выглядят одинаково, но для компьютера это принципиально разные вещи в памяти:
+
+1. **Строка `"123"`** — это массив символов (текст).
+    
+    - С ним нельзя делать математические операции: нельзя умножить `"123" * 2` или сложить `"123" + 5`.
+        
+2. **Число `123`** — это двоичное число типа `int`.
+    
+    - Компьютер умеет складывать его, вычитать, умножать и использовать в расчётах.
+
+```go
+func BasicAtoi(s string) int {
+	res := 0
+	for _, r := range s {
+	digit := int(r - '0')
+	res = res*10 + digit
+	}
+	return res
+}
+
+func main() {
+	fmt.Println(piscine.BasicAtoi("12345"))
+	fmt.Println(piscine.BasicAtoi("0000000012345"))
+	fmt.Println(piscine.BasicAtoi("000000"))
+}
+```
+
+- **`res := 0`** — создаёт пустую числовую копилку для итогового результата.
+    
+- **`for _, r := range s`** — перебирает строку слева направо по одному символу (`r` — это текущий текстовый значок-руна). 
+- тоесть _ берет индекс а r его символ из s
+    
+- **`digit := int(r - '0')`** — вычитает код символа `'0'` из текущего символа `r`, превращая текстовый значок в настоящую цифру от $0$ до $9$.
+- тоесть если символ 1 равен 49 то просиходит вот что 49-48=1 и это теперь число digit
+    
+- **`res = res*10 + digit`** — сдвигает уже накопленное число влево на один десятичный разряд (умножением на $10$) и прибавляет новую цифру на освободившееся место единиц.
+- а здесь рес берет первым 0 потом 0*10 + 1 и потом рес станет 1 и так выводится 1 и потом рес 1 *10 + 2 и потом рес станет 12 и так до конца
+
+
+[basicatoi2](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/basicatoi2?event=1081)
+--allow-builtin
+- Write a function that simulates the behaviour of the `Atoi` function in Go. `Atoi` transforms a number defined as a `string` in a number defined as an `int`.
+    
+- `Atoi` returns `0` if the `string` is not considered as a valid number. For this exercise **non-valid `string` chains will be tested**. Some will contain non-digits characters.
+    
+- For this exercise the handling of the signs `+` or `-` does not have to be taken into account.
+    
+- This function will **only** have to return the `int`. For this exercise the `error` return of `Atoi` is not required.
+
