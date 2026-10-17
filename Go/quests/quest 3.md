@@ -593,5 +593,41 @@ $
 4. **`return res * sign`**: возвращает результат с нужным знаком (положительным или отрицательным). тоесть у нас сайн будет либо 1 либо минус один и мы просто умножаем его и все
 
 [sortintegertable](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-03/sortintegertable?event=1081)--allow-builtin
-- Write a function that reorders a slice of `int` in ascending order.
+- Write a function that reorders a slice(массив) of `int` in ascending order(возрастание).
 
+```go
+func SortIntegerTable(table []int) {
+	for i:= 0;i<len(table);i++ {
+		for j:=i+1;j<len(table);j++{
+			if table[i]>table[j]{
+				table[i],table[j]=table[j],table[i]
+			}
+		}
+	}
+}
+
+func main() { 
+s := []int{5,4,3,2,1,0} 
+piscine.SortIntegerTable(s) 
+fmt.Println(s) 
+}
+
+$ go run . 
+[0 1 2 3 4 5] 
+$
+```
+
+  итерации
+  1
+5
+4
+5>4
+то они меняются местами
+теперь j 
+
+что мы делаем:
+table []int - функция берет только переменную table с массивом числов
+первый цикл говорит о том что i работает с 0 до длины массива(в примере там 6 чисел но по го с индексами 5)
+второй каждый раз добавляет к i один и работает до j<len(table)
+если массив i меньше массива j то они мнеяются с массивами: i становится j а j сатновится i
+я предплологаю что i играет на роль индексов переменного table а j 
