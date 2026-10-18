@@ -1,4 +1,4 @@
-[fibonacci](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/fibonacci?event=1081)
+
 [recursivefactorial](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/recursivefactorial?event=1081)
 Write a **recursive** function that returns the factorial of the `int` passed as parameter.
 Errors (non possible values or overflows) will return `0`.
@@ -155,3 +155,197 @@ arg1:=4=index если что. мы просто индексы искали
 ```
 
 
+[sqrt](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/sqrt?event=1081)
+Write a function that returns the square root of the `int` passed as parameter, if that square root is a whole number. Otherwise it returns `0`.
+
+```go
+func Sqrt(nb int) int { 
+	if nb <= 0 {
+		return 0
+	}
+	for i := 1; i*i <= nb; i++ {
+		if i*i == nb {
+			return i
+		}
+	}
+	return 0
+}
+
+func main() { 
+	fmt.Println(piscine.Sqrt(4)) 
+	fmt.Println(piscine.Sqrt(3)) 
+}
+
+$ go run . 
+2 
+0 
+$
+```
+
+последний `return 0` нужен, если цикл закончился, но точный целый корень не нашёлся. Например, для `nb == 10` проверятся `1`, `2` и `3`; ни одно из их квадратов не равно `10`, поэтому функция вернёт `0`. Здесь `0` означает «целого квадратного корня нет». Кроме того, в Go функция, которая возвращает `int`, должна вернуть значение на каждом пути выполнения — без этого код не скомпилируется.
+почему когда мы находим правильный ответ то return 0 не срабатывает а вернет правильный ответ?
+`return i` сразу завершает выполнение всей функции и возвращает найденное число. До последнего `return 0` выполнение уже не дойдёт.
+Например, если `nb == 4`:
+1. `i` становится `1`: `1*1 != 4`.
+2. `i` становится `2`: `2*2 == 4`.
+3. Выполняется `return i` — функция возвращает `2` и заканчивается.
+Последний `return 0` сработает только если цикл закончился, а совпадение так и не нашлось. Например, при `nb == 5` функция вернёт `0`
+
+
+[isprime](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/isprime?event=1081)
+Write a function that returns `true` if the `int` passed as parameter is a prime number. Otherwise it returns `false`.
+The function must be optimized in order to avoid time-outs with the tester.
+(We consider that only positive numbers can be prime numbers)
+(We also consider that 1 is **not** a prime number)
+
+prime number is the number that can be divided only to 1 and to itself
+
+```go
+func IsPrime(nb int) bool {
+	// We also consider that 1 is **not** a prime number по заданию так что исключаем все вещи которые не могут входить в прайм числа вклбчая 1 и минус числа
+	if nb <= 1 {
+		return false
+	}
+	// если число равен 2 то отправляем тру это нужно чтобы нам улучшить быстроту кода как на задании написано, и как она улушчается? мы знаем что большк 2 никакие нечетные числа не хводят в прайм так что мы выделяем именно 2 из них так как только это нечетное число входит в это
+	if nb == 2 {
+		return true
+	}
+	//если чтобы то не было если делаить на 2 бесконечно то калдык будет 0 то пишем фалс чтобы быстро исклбючить их
+	if nb%2 == 0 {
+		return false
+	}
+	//мы начинаем с 3(нечетное) а i += 2 означает что после 3 тот берет 5 и так далее тоесть все нечетные числа но если нечетное число делаится на интеджер с калдык 0 то пишем фалс(интеджер это не флоат так что может быть так что 9 мождет делиться на 3 и без калдык так что их тоже исключаем)
+	for i := 3; i*i <= nb; i += 2 {
+		if nb%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func main() { 
+	fmt.Println(piscine.IsPrime(5)) 
+	fmt.Println(piscine.IsPrime(4)) 
+}
+
+$ go run . 
+true 
+false 
+$
+```
+
+[findnextprime](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/findnextprime?event=1081)
+Write a function that returns the first prime number that is equal or superior to the `int` passed as parameter.
+The function must be optimized in order to avoid time-outs with the tester.
+(We consider that only positive numbers can be prime numbers)
+
+```go
+func IsPrimeCheck(nb int) bool {
+	if nb <= 1 {
+		return false
+	}
+	if nb == 2 {
+		return true
+	}
+	if nb%2 == 0 {
+		return false
+	}
+	for i := 3; i*i <= nb; i += 2 {
+		if nb%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+ 
+func FindNextPrime(nb int) int {
+	if nb <= 2 { //самое минимальное superior prime number для nb <= 2 это 2
+		return 2
+	}
+	for !IsPrimeCheck(nb) { //тоесть если мы берем 4 и тот false вышло из IsPrimeCheck(nb) и тот в=перевернет его на тру и только потом цикл заработает и даст 
+		nb++
+	}
+	return nb
+}
+
+
+func main() { 
+	fmt.Println(piscine.FindNextPrime(5)) 
+	fmt.Println(piscine.FindNextPrime(4)) 
+}
+
+$ go run . 
+5 
+5 
+$
+```
+как работает часть:	for !IsPrimeCheck(nb) { 
+	nb++
+}?
+- **Запуск:** Мы вызываем функцию для `nb = 8`.
+- **Проверка цикла:** Вычисляется условие `!IsPrimeCheck(8)`.
+    - Функция `IsPrimeCheck(8)` проверяет число 8. Оно четное, делится на 2, поэтому она возвращает **`false`**.
+    - Восклицательный знак перед функцией (`!`) инвертирует значение: `!false` превращается в **`true`**.
+    - Условие цикла истинно (`true`), поэтому цикл **начинает работу**.
+- **Первый шаг цикла (`nb++`):**
+    - Переменная увеличивается на 1: теперь `nb = 9`.
+- **Вторая итерация цикла:** Цикл снова проверяет условие: `!IsPrimeCheck(9)`.
+    - Функция `IsPrimeCheck(9)` проверяет девятку. Она видит, что 9 делится на 3 ($9 \% 3 == 0$), поэтому `IsPrimeCheck(9)` возвращает **`false`**.
+    - Восклицательный знак снова делает это значение **`true`** (`!false = true`). Условие снова истинно, цикл **продолжается**.
+- **Второй шаг цикла (`nb++`):**
+    - Переменная снова увеличивается на 1: теперь `nb = 10`.
+- **Третья итерация цикла:** Проверяем `!IsPrimeCheck(10)`.
+    - Число 10 четное, `IsPrimeCheck(10)` возвращает **`false`**, а `!` делает его **`true`**. Цикл снова идет дальше.
+- **Третий шаг цикла (`nb++`):**
+    - Переменная увеличивается: теперь `nb = 11`.
+- **Четвертая итерация цикла:** Проверяем `!IsPrimeCheck(11)`.
+    - Число 11 — **простое**! Функция `IsPrimeCheck(11)` возвращает **`true`**.
+    - Но перед ней стоит восклицательный знак (`!`), который превращает `true` в **`false`**.
+    - Условие цикла становится ложным (`false`), и **цикл мгновенно прекращает работу**!
+- **Финал:** Функция возвращает текущее значение `nb`, которое равно **`11`**.
+
+[eightqueens](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-04/eightqueens?event=1081)
+Write a function that prints the solutions to the [eight queens puzzle](https://en.wikipedia.org/wiki/Eight_queens_puzzle).
+Recursivity must be used to solve this problem.
+It should print something like this :
+$ go run .
+15863724 
+16837425 
+17468253 
+...
+
+Each solution will be on a single line. The index of the placement of a queen starts at 1. It reads from left to right and each digit is the position for each column. The solutions will be printed in ascending order.
+
+```go
+func isSafe(board [8]int, col, row int) bool {
+	for c := 0; c < col; c++ {
+		r := board[c]
+		if r == row || r-c == row-col || r+c == row+col {
+			return false
+		}
+	}
+	return true
+}
+
+func solve(board [8]int, col int) {
+	if col == 8 {
+		for _, pos := range board {
+			z01.PrintRune(rune(48 + pos))
+		}
+	z01.PrintRune(rune(10))
+	return
+	}
+
+	for row := 1; row <= 8; row++ {
+		if isSafe(board, col, row) {
+			board[col] = row
+			solve(board, col+1)
+		}
+	}
+}
+
+func EightQueens() {
+	var board [8]int
+	solve(board, 0)
+}
+```
