@@ -317,7 +317,7 @@ $ go run .
 Each solution will be on a single line. The index of the placement of a queen starts at 1. It reads from left to right and each digit is the position for each column. The solutions will be printed in ascending order.
 
 ```go
-func isSafe(board [8]int, col, row int) bool {
+func isSafe(board [8]int, col, row int) bool { //[8]int это массив из 8 чисел
 	for c := 0; c < col; c++ {
 		r := board[c]
 		if r == row || r-c == row-col || r+c == row+col {
@@ -345,7 +345,14 @@ func solve(board [8]int, col int) {
 }
 
 func EightQueens() {
-	var board [8]int
-	solve(board, 0)
+	var board [8]int // создает пустой массив из восьми нулей (чистая доска, где еще нет ферзей)
+	solve(board, 0) // Запускаем расстановку с нулевого столбца (col = 0)
 }
 ```
+`col` и `row` — координаты **нового** ферзя, которого мы хотим поставить.
+`c` — переменная цикла, которая обозначает **столбцы слева** от нашего текущего (мы проверяем только те столбцы, где ферзи уже стоят, от `0` до `col - 1`).
+`r` — строка, на которой стоит старый ферзь в проверочном столбце `c` (значение берется из `board[c]`).
+`board` — текущее состояние доски с уже расставленными ферзями.
+`col` — номер **текущего столбца**, в который мы прямо сейчас пытаемся поставить ферзя (идет от 0 до 7).
+`row` — переменная в цикле, которая означает **номер строки** (от 1 до 8), куда мы пробуем поставить ферзя.
+`pos` — временная переменная в цикле вывода, обозначающая позицию конкретного ферзя в массиве.
