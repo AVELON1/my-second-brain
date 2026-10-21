@@ -486,3 +486,367 @@ func PrintNbrInOrder(n int)
 **Этот цикл только считает цифры. По порядку он их не печатает.**
 
 **Внутренний цикл** печатает каждую цифру столько раз, сколько она встретилась. Например, если цифра `2` встретилась три раза, `count[2]` равно `3`, и цифра `2` будет напечатана трижды.
+
+
+[trimatoi](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/trimatoi?event=1081)
+- Write a function that transforms numbers within a `string`, into an `int`.
+- If the `-` sign is encountered before any number it should determine the sign of the returned `int`.
+    
+- This function should **only** return an `int`. In the case of an invalid input, the function should return `0`.
+    
+- **Note**: There will never be more than one sign in a `string` in the tests.
+
+```go
+func TrimAtoi(s string) int {
+	res := 0
+	sign := 1
+	hasDigit := false
+	
+	for _, r := range s {
+		if r >= '0' && r <= '9' {
+			hasDigit = true
+			res = res*10 + int(r-'0') //разряд + r-48
+		} else if r == '-' && !hasDigit {{ /* Allow negative sign only if no digits have been encountered yet*/
+			sign = -1
+		}
+	}
+	
+	return res * sign
+}
+
+
+func main() { 
+	fmt.Println(piscine.TrimAtoi("12345")) 
+	fmt.Println(piscine.TrimAtoi("str123ing45")) 
+	fmt.Println(piscine.TrimAtoi("012 345")) 
+	fmt.Println(piscine.TrimAtoi("Hello World!")) 
+	fmt.Println(piscine.TrimAtoi("sd+x1fa2W3s4")) 
+	fmt.Println(piscine.TrimAtoi("sd-x1fa2W3s4")) 
+	fmt.Println(piscine.TrimAtoi("sdx1-fa2W3s4")) 
+	fmt.Println(piscine.TrimAtoi("sdx1+fa2W3s4")) 
+}
+
+
+$ go run . 12345 
+12345 
+12345 
+0 
+1234 
+-1234 
+1234 
+1234 
+$
+```
+
+
+
+[capitalize](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/capitalize?event=1081)
+Write a function that capitalizes the first letter of each word **and** lowercases the rest.
+A word is a sequence of **alphanumeric** characters.
+```go
+func isAlphaNum(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') //alphanumerical condition
+}
+
+func Capitalize(s string) string {
+	runes := []rune(s)
+	newWord := true
+	
+	for i, r := range runes {
+		if isAlphaNum(r) {
+			if newWord /* Это первый символ слова*/{
+				if r >= 'a' && r <= 'z' {
+					runes[i] = r - ('a' - 'A') //r-32
+				}
+				newWord = false
+			} else /* Это не первый символ слова*/{
+				if r >= 'A' && r <= 'Z' {
+					runes[i] = r + ('a' - 'A') //r+32=
+				}
+			}
+		} else {
+			newWord = true
+		}
+	}
+	
+	return string(runes)
+}
+
+
+`func main() { 
+	fmt.Println(piscine.Capitalize("Hello! How are you? How+are+things+4you?")) 
+}`
+
+And its output :
+
+`$ go run . 
+Hello! How Are You? How+Are+Things+4you? 
+$`
+```
+`newWord` сначала равен `true`:
+newWord := true
+Это значит: «Мы пока не встретили символ текущего слова». Поэтому первый буквенно-цифровой символ строки считается началом слова.
+Если символ — буква или цифра, функция смотрит на `newWord`:
+- `true` — это первый символ слова;
+- `false` — мы уже внутри слова.
+Если символ **не** буква и **не** цифра — например, пробел, `!`, `?` или `+` — слово закончилось. Функция снова ставит `newWord = true`. Следующий буквенно-цифровой символ станет началом нового слова.
+1. В начале `newWord == true`. Первый символ — `H`, это буква. Значит, это начало слова. `H` уже заглавная, менять её не нужно. Затем `newWord` становится `false`.
+2. Символы `e`, `l`, `l`, `o` — всё ещё часть того же слова. Они не первые.
+3. Символ `!` — не буква и не цифра. Слово закончилось, поэтому `newWord` снова становится `true`.
+4. После пробела начинается `How`. Буква `H` — первый символ слова, а значит, она заглавная. Остальные буквы слова становятся строчными.
+5. Пробел снова устанавливает `newWord = true`. Поэтому `a` в слове `are` будет заглавной: получится `Are`.
+
+Так происходит для всей строки. Символ `+`, как и пробел, разделяет слова, поэтому после него следующая буква тоже считается первой:
+How+are+things
+превращается в:
+How+Are+Things
+|№|Символ|`newWord` до|Что делает программа|`newWord` после|
+|0|пробел|`true`|Это не буква и не цифра. Слово ещё не началось.|`true`|
+|1|`H`|`true`|Это первая буква слова. Она уже заглавная, поэтому остаётся `H`.|`false`|
+|2|`o`|`false`|Не первая буква слова. Она уже строчная, остаётся `o`.|`false`|
+|3|`w`|`false`|Не первая буква слова. Остаётся `w`.|`false`|
+|4|пробел|`false`|Это разделитель, значит, следом может начаться новое слово.|`true`|
+|5|`a`|`true`|Первая буква слова. Она строчная, превращается в `A`.|`false`|
+|6|`r`|`false`|Не первая буква. Остаётся `r`.|`false`|
+|7|`e`|`false`|Не первая буква. Остаётся `e`.|`false`|
+|8|пробел|`false`|Разделитель — следующее слово начнётся заново.|`true`|
+|9|`y`|`true`|Первая буква слова. Строчная `y` превращается в `Y`.|`false`|
+|10|`o`|`false`|Не первая буква. Остаётся `o`.|`false`|
+|11|`u`|`false`|Не первая буква. Остаётся `u`.|`false`|
+|12|`?`|`false`|Это не буква и не цифра, поэтому отмечаем начало нового слова.|`true`|
+|13|пробел|`true`|Это тоже разделитель. `newWord` остаётся `true`.|`true`|
+
+Изменились только `a` → `A` и `y` → `Y`:
+" How Are You? "
+
+
+[basicjoin](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/basicjoin?event=1081)
+Write a function that returns a concatenated `string` from the 'strings' passed as arguments.
+Функция получает несколько строк и должна соединить их в одну длинную строку.
+```go
+func BasicJoin(elems []string) string {
+	res := ""
+	for _, s := range elems {
+		res += s
+	}
+	return res
+}
+
+
+`func main() { 
+	elems := []string{"Hello!", " How", " are", " you?"} 
+	fmt.Println(piscine.BasicJoin(elems)) 
+}`
+
+And its output :
+
+`$ go run . 
+Hello! How are you? 
+$`
+```
+Начинаем с пустой строки: res := ""
+Go понимает, что `res` — строка, потому что ей присвоено значение `""`.
+Например, передаваемый срез:
+[]string{"Hello!", " How", " are", " you?"}
+содержит четыре строки.
+`range elems` проходит по элементам среза один за другим.
+
+
+
+11111111  1 11111111111111111111
+[join](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/join?event=1081)
+Write a function that returns the concatenation of all the `string`s of a slice of `string`s **separated** by the separator passed as the argument `sep`.
+```go
+func Join(strs []string, sep string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+	
+	res := strs[0]
+	for i := 1; i < len(strs); i++ {
+		res += sep + strs[i]
+	}
+	return res
+}
+
+
+
+`func main() { 
+	toConcat := []string{"Hello!", " How", " are", " you?"} 
+	fmt.Println(piscine.Join(toConcat, ":")) 
+}`
+
+And its output :
+
+`$ go run . 
+Hello!: How: are: you? 
+$`
+```
+
+
+[printnbrbase](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/printnbrbase?event=1081)
+Write a function that prints an `int` in a `string` base passed as parameters.
+If the base is not valid, the function prints `NV` (Not Valid):
+Validity rules for a base :
+- A base must contain at least 2 characters.
+    
+- Each character of a base must be unique.
+    
+- A base should not contain `+` or `-` characters.
+    
+The function has to manage negative numbers. (as shown in the example)
+```go
+func isValidBase(b []rune) bool {
+	if len(b) < 2 {
+		return false
+	}
+	for i := 0; i < len(b); i++ {
+		if b[i] == '+' || b[i] == '-' {
+			return false
+		}
+		for j := i + 1; j < len(b); j++ {
+			if b[i] == b[j] {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func PrintNbrBase(nbr int, base string) {
+	b := []rune(base)
+	if !isValidBase(b) {
+		z01.PrintRune('N')
+		z01.PrintRune('V')
+		return
+	}
+	
+	baseLen := len(b)
+	
+	if nbr < 0 {
+		z01.PrintRune('-')
+		if nbr <= -baseLen {
+			PrintNbrBasePos(-(nbr / baseLen), b, baseLen)
+		}
+		z01.PrintRune(b[-(nbr % baseLen)])
+		return
+	}
+	
+	PrintNbrBasePos(nbr, b, baseLen)
+}
+
+func PrintNbrBasePos(n int, b []rune, baseLen int) {
+	if n >= baseLen {
+		PrintNbrBasePos(n/baseLen, b, baseLen)
+	}
+	z01.PrintRune(b[n%baseLen])
+}
+
+
+`func main() { 
+	piscine.PrintNbrBase(125, "0123456789") 
+	z01.PrintRune('\n') 
+	piscine.PrintNbrBase(-125, "01") 
+	z01.PrintRune('\n') 
+	piscine.PrintNbrBase(125, "0123456789ABCDEF") 
+	z01.PrintRune('\n') 
+	piscine.PrintNbrBase(-125, "choumi") 
+	z01.PrintRune('\n') 
+	piscine.PrintNbrBase(125, "aa") 
+	z01.PrintRune('\n') 
+}`
+
+And its output :
+
+`$ go run . 
+125 
+-1111101 
+7D 
+-uoi 
+NV 
+$`
+```
+
+
+[atoibase](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/atoibase?event=1081)
+Write a function that takes two arguments:
+- `s`: a numeric `string` in a given [base](https://simple.wikipedia.org/wiki/Base_\(mathematics\)).
+    
+- `base`: a `string` representing all the different digits that can represent a numeric value.
+And return the integer value of `s` in the given `base`.
+If the base is not valid it returns `0`.
+Validity rules for a base :
+- A base must contain at least 2 characters.
+    
+- Each character of a base must be unique.
+    
+- A base should not contain `+` or `-` characters.
+String number must contain only elements that are in base.
+Only valid `string` numbers will be tested.
+The function **does not have** to manage negative numbers.
+```go
+func checkBase(b []rune) bool {
+	if len(b) < 2 {
+		return false
+	}
+	for i := 0; i < len(b); i++ {
+		if b[i] == '+' || b[i] == '-' {
+			return false
+		}
+		for j := i + 1; j < len(b); j++ {
+			if b[i] == b[j] {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func getIndex(r rune, b []rune) int {
+	for i, char := range b {
+		if char == r {
+			return i
+		}
+	}
+	return -1
+}
+
+func AtoiBase(s string, base string) int {
+	baseRunes := []rune(base)
+	if !checkBase(baseRunes) {
+		return 0
+	}
+	
+	baseLen := len(baseRunes)
+	res := 0
+	
+	for _, r := range s {
+		val := getIndex(r, baseRunes)
+		if val == -1 {
+			return 0
+		}
+		res = res*baseLen + val
+	}
+	return res
+}
+
+
+`func main() { 
+	fmt.Println(piscine.AtoiBase("125", "0123456789")) 
+	fmt.Println(piscine.AtoiBase("1111101", "01")) 
+	fmt.Println(piscine.AtoiBase("7D", "0123456789ABCDEF")) 
+	fmt.Println(piscine.AtoiBase("uoi", "choumi")) 
+	fmt.Println(piscine.AtoiBase("bbbbbab", "-ab")) 
+}`
+
+And its output :
+
+`$ go run . 
+125 
+125 
+125 
+125 
+0 
+$`
+```
+
