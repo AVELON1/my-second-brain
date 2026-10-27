@@ -51,13 +51,13 @@ $
 ``letters[2] // 'т'
 Индексы начинаются с нуля.
 Важно: `[]rune` — это именно **срез**, а не массив. В обычном разговоре их легко спутать, но для этой задачи запомни: `[]rune(s)` превращает строку `s` в срез рун.
-
+J
 [nrune](https://01.tomorrow-school.ai/intra/qairu/piscinego/quest-05/nrune?event=1081)
 Write a function that returns the nth `rune` of a `string`. If not possible, it returns `0`.
 ```go
 func NRune(s string, n int) rune {
 	runes := []rune(s)
-	if n < 1 || n > len(runes) { //проверяет находится ли индекс в пределах длины среза
+	if n < 1 || n > len(runesu) { //проверяет находится ли индекс в пределах длины среза
 		return 0
 	}
 	return runes[n-1] // Возвращаем руну по индексу (n - 1), так как в Go индексация с 0)
