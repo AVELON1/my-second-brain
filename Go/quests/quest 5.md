@@ -737,8 +737,8 @@ Validity rules for a base :
 - A base should not contain `+` or `-` characters.
 The function has to manage negative numbers. (as shown in the example)
 ```go
-func isValidBase(b []rune) bool { //функция который считаывает range и неправильные 
-	if len(b) < 2 { // нужны только нормальные системы а не меньше 2
+func isValidBase(b []rune) bool { //функция который проверяет корректность значении
+	if len(b) < 2 { // нужны только нормальные системы а не меньше 2 так как не сузествует системы счистления меньше 2
 		return false
 	}
 	for i := 0; i < len(b); i++ { // проверяет все в массиве 
@@ -754,19 +754,19 @@ func isValidBase(b []rune) bool { //функция который считаыв
 	return true
 }
 
-func PrintNbrBase(nbr int, base string) {
+func PrintNbrBase(nbr int, base string) { 
 	b := []rune(base)
-	if !isValidBase(b) {
+	if !isValidBase(b) { //если база нарушает хотя бы одно правило валидности
 		z01.PrintRune('N')
 		z01.PrintRune('V')
 		return
 	}
 	
-	baseLen := len(b)
+	baseLen := len(b) 
 	
-	if nbr < 0 {
+	if nbr < 0 { //если дана например -125 то выводит с минусом
 		z01.PrintRune('-')
-		if nbr <= -baseLen {
+		if nbr <= -baseLen { //формула системы для -нбр тоесть рекурсия
 			PrintNbrBasePos(-(nbr / baseLen), b, baseLen)
 		}
 		z01.PrintRune(b[-(nbr % baseLen)])
@@ -776,7 +776,7 @@ func PrintNbrBase(nbr int, base string) {
 	PrintNbrBasePos(nbr, b, baseLen)
 }
 
-func PrintNbrBasePos(n int, b []rune, baseLen int) {
+func PrintNbrBasePos(n int, b []rune, baseLen int) {//а это для +нбр рекурсия
 	if n >= baseLen {
 		PrintNbrBasePos(n/baseLen, b, baseLen)
 	}
@@ -936,7 +936,7 @@ String number must contain only elements that are in base.
 Only valid `string` numbers will be tested.
 The function **does not have** to manage negative numbers.
 ```go
-func checkBase(b []rune) bool {
+func checkBase(b []rune) bool { //то же самое
 	if len(b) < 2 {
 		return false
 	}
@@ -962,7 +962,7 @@ func getIndex(r rune, b []rune) int {
 	return -1
 }
 
-func AtoiBase(s string, base string) int {
+func AtoiBase(s string, base string) int {//то же самое
 	baseRunes := []rune(base)
 	if !checkBase(baseRunes) {
 		return 0
@@ -971,7 +971,7 @@ func AtoiBase(s string, base string) int {
 	baseLen := len(baseRunes)
 	res := 0
 	
-	for _, r := range s {
+	for _, r := range s {//пишет результат
 		val := getIndex(r, baseRunes)
 		if val == -1 {
 			return 0
@@ -1000,18 +1000,94 @@ And its output :
 0 
 $`
 ```
-
+- В прошлой задаче (`PrintNbrBase`) мы брали обычное число `125` и превращали его в строку в другой системе счисления (например, `"7D"` или `"uoi"`).
+    
+- В этой задаче (`AtoiBase` — от _ASCII to Integer_) мы берем строку из другой системы счисления (например, `"7D"` или `"uoi"`) и **переводим её обратно в обычное число `int` (125)**.
 ### Разбор логики AtoiBase
 Это операция, строго обратная `PrintNbrBase`: мы принимаем строку цифр `s` в системе `base` и переводим её в десятичное число `int`.
 
 1. **Функция `getIndex(r, b)`**:  
    Ищет символ `r` в алфавите `b`. Индекс найденного символа и есть его вес!  
    Например, в `"choumi"` символ `'c'` имеет вес `0`, а символ `'u'` имеет вес `3`. Если символа в базе нет — возвращает `-1`.
-2. **Формула накопления разрядов**:  
+**Пример:** Если база `"0123456789ABCDEF"`:
+
+- `getIndex('7', baseRunes)` вернет `7`.
+    
+- `getIndex('A', baseRunes)` вернет `10`.
+    
+- `getIndex('D', baseRunes)` вернет `13`.
+    
+
+Если база `"choumi"`:
+
+- `'c'` лежит на индексе `0` $\to$ значение `0`
+    
+- `'h'` лежит на индексе `1` $\to$ значение `1`
+    
+- `'o'` лежит на индексе `2` $\to$ значение `2`
+    
+- `'u'` лежит на индексе `3` $\to$ значение `3`
+    
+- `'m'` лежит на индексе `4` $\to$ значение `4`
+    
+- `'i'` лежит на индексе `5` $\to$ значение `5`
+Если в строке встретится символ, которого в базе нет (например `'z'`), `getIndex` вернет `-1`, и функция сразу завершится с `0`.
+
+1. **Формула накопления разрядов**:  
    В обычном `Atoi` для десятичной системы мы делали `res = res*10 + val`.  
    Здесь вместо `10` мы умножаем на размер базы:  
    `res = res * baseLen + val`.
+#### Пример 1: `AtoiBase("7D", "0123456789ABCDEF")`
 
+- `baseLen` = 16
+    
+- Изначально: `res = 0`
+    
+- **Шаг 1 (символ `'7'`):**
+    
+    - `val = getIndex('7') = 7`
+        
+    - `res = 0 * 16 + 7 = 7`
+        
+- **Шаг 2 (символ `'D'`):**
+    
+    - `val = getIndex('D') = 13`
+        
+    - `res = 7 * 16 + 13 = 112 + 13 = 125`
+        
+- **Итог:** `125`.
+#### Пример 2: `AtoiBase("uoi", "choumi")`
+
+- `baseLen` = 6 (длина слова `"choumi"`)
+    
+- Изначально: `res = 0`
+    
+- **Шаг 1 (символ `'u'`):**
+    
+    - В слове `"choumi"` буква `'u'` стоит на индексе 3 $\to$ `val = 3`.
+        
+    - `res = 0 * 6 + 3 = 3`
+        
+- **Шаг 2 (символ `'o'`):**
+    
+    - Буква `'o'` стоит на индексе 2 $\to$ `val = 2`.
+        
+    - `res = 3 * 6 + 2 = 18 + 2 = 20`
+        
+- **Шаг 3 (символ `'i'`):**
+    
+    - Буква `'i'` стоит на индексе 5 $\to$ `val = 5`.
+        
+    - `res = 20 * 6 + 5 = 120 + 5 = 125`
+        
+- **Итог:** `125`.
+#### Пример 3: `AtoiBase("bbbbbab", "-ab")`
+
+- База `"-ab"` содержит символ `'-'`.
+    
+- `checkBase` сразу возвращает `false`.
+    
+- Функция моментально возвращает `0`.
 ### Итерации:
 Вызов `AtoiBase("uoi", "choumi")` (`baseLen = 6`):
 Алфавит: `c=0, h=1, o=2, u=3, m=4, i=5`.
